@@ -8,4 +8,15 @@ class ApplicationController < ActionController::Base
     @square_of_num = @num.to_f ** 2
     render({:template => "calculation_templates/square_results.html.erb"})
   end
+
+  def blank_random_form
+    render({:template => "calculation_templates/random_form.html.erb"})
+  end
+
+  def calculate_random
+    @user_min = params.fetch("user_min").to_f
+    @user_max = params.fetch("user_max").to_f
+    @random_result = rand(@user_min..@user_max)
+    render({:template => "calculation_templates/random_results.html.erb"})
+  end
 end
